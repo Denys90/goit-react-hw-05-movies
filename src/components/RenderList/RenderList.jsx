@@ -1,17 +1,18 @@
-import { Link } from 'react-router-dom';
-// import { nanoid } from 'nanoid';
+import { Link, useLocation } from 'react-router-dom';
 
 const RenderList = ({ movisNames }) => {
-  // console.log(movisNames);
+  const location = useLocation();
   return (
     <ul>
       {movisNames &&
         movisNames.map(
           movie =>
             movisNames.title && (
-              <Link key={movie.id} to={`/movies/${movie.id}`}>
-                <li>{movie.title}</li>
-              </Link>
+              <li key={movie.id}>
+                <Link to={`/movies/${movie.id}`} state={{ from: location }}>
+                  {movie.title}
+                </Link>
+              </li>
             )
         )}
     </ul>

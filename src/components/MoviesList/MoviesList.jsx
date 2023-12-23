@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import fetchMovies from '../API/fetchMovies';
 import { nanoid } from 'nanoid';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const MoviesList = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchPopularMovies = async () => {
@@ -17,11 +18,16 @@ const MoviesList = () => {
     };
     fetchPopularMovies();
   }, []);
+  const filteredMovies = movies.filter(movie => movie.title);
 
   return (
     <ul>
-      {movies.map(movie => (
-        <Link key={nanoid()} to={`/movies/${movie.id}`}>
+      {filteredMovies.map(movie => (
+        <Link
+          key={nanoid()}
+          to={`/movies/${movie.id}`}
+          state={{ from: location }}
+        >
           <li id={movie.id}>{movie.title}</li>
         </Link>
       ))}

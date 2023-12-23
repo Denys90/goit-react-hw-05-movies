@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
+// import { useLocation } from 'react-router-dom';
 import RenderList from '../RenderList/RenderList';
 import fetchKeyword from '../API/fetchKeyword';
 // =================================================>
 const SubmitForm = () => {
   const [query, setQuery] = useState('');
-  const [movisNames, setMovisNames] = useState(() => {
-    return JSON.parse(localStorage.getItem('movisNames')) || [];
-  });
+  const [movisNames, setMovisNames] = useState(
+    () => JSON.parse(localStorage.getItem('movisNames')) || []
+  );
+  // const location = useLocation();
   // =================================================>
   useEffect(() => {
     localStorage.setItem('movisNames', JSON.stringify(movisNames));
@@ -18,7 +20,7 @@ const SubmitForm = () => {
   // =================================================>
   const handleSubmit = async event => {
     event.preventDefault();
-    if (!query.trim() === '') return;
+    if (!query.trim()) return;
 
     try {
       const response = await fetchKeyword(query);
@@ -42,6 +44,7 @@ const SubmitForm = () => {
         ></input>
         <button type="submit">Search</button>
       </form>
+
       <RenderList movisNames={movisNames} />
     </>
   );
