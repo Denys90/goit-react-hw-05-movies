@@ -18,12 +18,12 @@ const SubmitForm = () => {
   // =================================================>
   const handleSubmit = async event => {
     event.preventDefault();
-    if (!query.trim()) return;
+    if (!query.trim() === '') return;
 
     try {
       const response = await fetchKeyword(query);
-      console.log('fetchKeyword=====>', response.data);
-      setMovisNames(prevState => [...prevState, response.data]);
+      console.log('fetchKeyword=====>', response.data.results);
+      setMovisNames(prevState => [...prevState, response.data.results]);
     } catch (error) {
       throw error;
     }
