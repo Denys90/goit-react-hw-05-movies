@@ -14,14 +14,14 @@ const Cast = () => {
         const { data } = await fetchCast(movieId);
         console.log(data.cast);
 
-        setCasts(prevState => [...prevState, ...data.cast]);
+        setCasts(data.cast);
       } catch (error) {
         throw error;
       }
     };
 
     fetchNameCasts();
-  }, [casts, movieId]);
+  }, []);
 
   return (
     <>
