@@ -1,4 +1,4 @@
-import axios from 'sxios';
+import axios from 'axios';
 
 async function fetchReviews(movieId) {
   const options = {
