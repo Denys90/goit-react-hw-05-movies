@@ -1,56 +1,43 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import RenderList from '../RenderList/RenderList';
-import fetchKeyword from '../API/fetchKeyword';
+import { useState } from 'react';
+// import { useSearchParams } from 'react-router-dom';
 
-const SubmitForm = () => {
+// ===========================================================>
+const SubmitForm = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [movisNames, setMovisNames] = useState(
-    () => JSON.parse(localStorage.getItem('movisNames')) || []
-  );
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // ===========================================================>
+  // const movieId = searchParams.get('movieId') ?? '';
 
-  const movieId = searchParams.get('movieId') ?? '';
+  // ===========================================================>
 
-  useEffect(() => {
-    localStorage.setItem('movisNames', JSON.stringify(movisNames));
-  }, [movisNames]);
-
-  const handleSubmit = async event => {
-    event.preventDefault();
-    if (!query.trim()) return;
-
-    try {
-      const response = await fetchKeyword(query);
-      console.log('fetchKeyword=====>', response.data.results);
-      setMovisNames(prevState => [...prevState, ...response.data.results]);
-    } catch (error) {
-      throw error;
-    }
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(query);
     setQuery('');
   };
-
+  // ===========================================================>
+  // const updateQueryString = e => {
+  //   const movieIdValue = e.target.value;
+  //   if (movieIdValue === '') {
+  //     return setSearchParams({});
+  //   }
+  //   setSearchParams({ movieId: movieIdValue });
+  //   setQuery(movieIdValue);
+  // };
   const updateQueryString = e => {
-    const movieIdValue = e.target.value;
-    if (movieIdValue === '') {
-      return setSearchParams({});
-    }
-    setSearchParams({ movieId: movieIdValue });
+    setQuery(e.target.value);
   };
-
+  // ===========================================================>
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={movieId}
-          onChange={updateQueryString}
-          placeholder="Search movie "
-        ></input>
-        <button type="submit">Search</button>
-      </form>
-      <RenderList movisNames={movisNames} />
-    </>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={query}
+        onChange={updateQueryString}
+        placeholder="Search movie "
+      ></input>
+      <button type="submit">Search</button>
+    </form>
   );
 };
 

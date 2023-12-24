@@ -1,5 +1,5 @@
-import { useParams, Link, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams, Link, useLocation, Outlet } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
 import fetchNameMovie from '../API/fetchNameMovie';
 
 const MovieData = () => {
@@ -24,7 +24,7 @@ const MovieData = () => {
 
   return (
     <main>
-      <Link to={location.state.from}>Go to back!</Link>
+      <Link to={location.state?.from ?? '/movies'}>Go to back!</Link>
       <section>
         <div>
           <img
@@ -38,15 +38,33 @@ const MovieData = () => {
             height={400}
           />
         </div>
-        <h1>{title}</h1>
-        <p>User Score: {Math.round(popularity / 10)}%</p>
-
-        <h2>{}</h2>
-        <p>
-          <b>Overview</b> {overview}
-        </p>
-        <p></p>
-        <p></p>
+        <div>
+          <h1>{title}</h1>
+          <p>User Score: {Math.round(popularity / 10)}%</p>
+          <p>
+            <b>Overview</b> {overview}
+          </p>
+          <ul>
+            {oneMovie.genres &&
+              oneMovie.genres.map(genre => (
+                <li key={genre.id}>{genre.name}</li>
+              ))}
+          </ul>
+        </div>
+        <div>
+          <h2>Additional information</h2>
+          <ul>
+            <li>
+              <Link to="cast">Cast</Link>
+            </li>
+            <li>
+              <Link to="reviews">Reviews</Link>
+            </li>
+          </ul>
+          <Suspense fallback={<div>Loading subpage....</div>}>
+            <Outlet />
+          </Suspense>
+        </div>
       </section>
     </main>
   );

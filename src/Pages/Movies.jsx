@@ -1,11 +1,9 @@
-import SubmitForm from '../components/SubmitForm/SubmitForm';
-import SearchList from '../components/RenderList/RenderList';
+import MoviesSearch from '..//components/Movies/MoviesSearch';
 
-const Movies = ({ movisNames }) => {
+const Movies = () => {
   return (
     <>
-      <SubmitForm />
-      <SearchList movisNames={movisNames} />
+      <MoviesSearch />
     </>
   );
 };
