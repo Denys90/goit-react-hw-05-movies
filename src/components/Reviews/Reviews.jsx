@@ -8,8 +8,6 @@ const Reviews = () => {
 
   useEffect(() => {
     const fetchAuthor = async () => {
-      if (!authors) return;
-
       try {
         const { data } = await fetchReviews(movieId);
 
@@ -20,12 +18,12 @@ const Reviews = () => {
     };
 
     fetchAuthor();
-  }, [authors, movieId]);
+  }, [movieId]);
 
   return (
     <ul>
       {authors.map(author => (
-        <li key={author.username}>
+        <li key={author.id}>
           <h2>{author.author_details.username}</h2>
           <p>{author.content}</p>
         </li>

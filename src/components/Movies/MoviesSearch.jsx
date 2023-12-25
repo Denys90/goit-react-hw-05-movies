@@ -12,7 +12,7 @@ const MoviesSearch = () => {
 
     try {
       const response = await fetchKeyword(queryValue);
-      setMovies(prevState => [...prevState, ...response.data.results]);
+      setMovies(response.data.results);
     } catch (error) {
       throw error;
     }

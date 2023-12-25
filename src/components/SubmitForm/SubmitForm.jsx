@@ -1,38 +1,36 @@
 import { useState } from 'react';
-// import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 // ===========================================================>
 const SubmitForm = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   // ===========================================================>
-  // const movieId = searchParams.get('movieId') ?? '';
+  const movieId = searchParams.get('movieId') ?? '';
 
   // ===========================================================>
 
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(query);
-    setQuery('');
+    setSearchParams({ movieId: '' });
   };
   // ===========================================================>
-  // const updateQueryString = e => {
-  //   const movieIdValue = e.target.value;
-  //   if (movieIdValue === '') {
-  //     return setSearchParams({});
-  //   }
-  //   setSearchParams({ movieId: movieIdValue });
-  //   setQuery(movieIdValue);
-  // };
   const updateQueryString = e => {
-    setQuery(e.target.value);
+    const movieIdValue = e.target.value;
+    if (movieIdValue === '') {
+      return setSearchParams({});
+    } else {
+      setSearchParams({ movieId: movieIdValue });
+    }
+    setQuery(movieIdValue);
   };
   // ===========================================================>
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={query}
+        value={movieId}
         onChange={updateQueryString}
         placeholder="Search movie "
       ></input>

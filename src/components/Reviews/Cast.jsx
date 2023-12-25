@@ -8,8 +8,6 @@ const Cast = () => {
 
   useEffect(() => {
     const fetchNameCasts = async () => {
-      if (!casts) return;
-
       try {
         const { data } = await fetchCast(movieId);
 
@@ -20,7 +18,8 @@ const Cast = () => {
     };
 
     fetchNameCasts();
-  }, [casts, movieId]);
+  }, [movieId]);
+
   const DEFAULT_POSTER_PATH = 'https://via.placeholder.com/200';
   return (
     <>
@@ -33,7 +32,6 @@ const Cast = () => {
                 alt={`${cast.name} profile`}
               />
             ) : (
-              // <div>No Image</div>
               <img src={DEFAULT_POSTER_PATH} alt={cast.name} />
             )}
             <div>

@@ -1,11 +1,12 @@
 import { useParams, Link, useLocation, Outlet } from 'react-router-dom';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useRef } from 'react';
 import fetchNameMovie from '../API/fetchNameMovie';
 
 const MovieData = () => {
   const [oneMovie, setOneMovie] = useState([]);
   const { movieId } = useParams();
   const location = useLocation();
+  const backlinkLocationRef = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
     const fetchOneMovie = async () => {
@@ -24,7 +25,7 @@ const MovieData = () => {
 
   return (
     <main>
-      <Link to={location.state?.from ?? '/movies'}>Go to back!</Link>
+      <Link to={backlinkLocationRef.current}>Go to back!</Link>
       <section>
         <div>
           <img
