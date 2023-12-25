@@ -1,7 +1,8 @@
-import { useParams, NavLink, useLocation, Outlet } from 'react-router-dom';
+import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { Suspense, useEffect, useState, useRef } from 'react';
 import fetchNameMovie from '../API/fetchNameMovie';
 import { FaLongArrowAltRight } from 'react-icons/fa';
+import { FaChevronLeft } from 'react-icons/fa';
 import {
   Container,
   Section,
@@ -11,6 +12,7 @@ import {
   GenresList,
   Score,
   LinkStyled,
+  GoToBack,
 } from './Container';
 
 const MovieData = () => {
@@ -39,7 +41,10 @@ const MovieData = () => {
 
   return (
     <Container>
-      <NavLink to={backlinkLocationRef.current}>Go to back!</NavLink>
+      <GoToBack to={backlinkLocationRef.current}>
+        <FaChevronLeft />
+        Go to back!
+      </GoToBack>
       <Section>
         <ImageContainer>
           <img

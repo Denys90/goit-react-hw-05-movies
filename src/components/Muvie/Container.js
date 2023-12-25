@@ -82,5 +82,19 @@ export const LinkStyled = styled(NavLink)`
   color: #cfcaca;
   &:hover {
     color: #007bff;
+    transition: 0.3s;
+  }
+`;
+
+export const GoToBack = styled(NavLink)`
+  text-decoration: none;
+  color: #cfcaca;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+
+  :hover {
+    transition: 0.3s;
+    color: #007bff;
   }
 `;
