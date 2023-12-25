@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Form } from './Form';
+import { BsSearch } from 'react-icons/bs';
 
 // ===========================================================>
 const SubmitForm = ({ onSubmit }) => {
@@ -27,15 +29,17 @@ const SubmitForm = ({ onSubmit }) => {
   };
   // ===========================================================>
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <input
         type="text"
         value={movieId}
         onChange={updateQueryString}
         placeholder="Search movie "
       ></input>
-      <button type="submit">Search</button>
-    </form>
+      <button type="submit">
+        <BsSearch />
+      </button>
+    </Form>
   );
 };
 

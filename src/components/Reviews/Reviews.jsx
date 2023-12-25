@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import fetchReviews from '../API/fetchReviews';
+import { StyledContent } from './StyledContent';
 
 const Reviews = () => {
   const [authors, setAuthors] = useState([]);
@@ -25,7 +26,7 @@ const Reviews = () => {
       {authors.map(author => (
         <li key={author.id}>
           <h2>{author.author_details.username}</h2>
-          <p>{author.content}</p>
+          <StyledContent>{author.content}</StyledContent>
         </li>
       ))}
     </ul>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import fetchCast from '../API/fetchCast';
+import { GastList, CastCard } from './GastList';
 
 const Cast = () => {
   const [casts, setCasts] = useState([]);
@@ -23,9 +24,9 @@ const Cast = () => {
   const DEFAULT_POSTER_PATH = 'https://via.placeholder.com/200';
   return (
     <>
-      <ul>
+      <GastList>
         {casts.map(cast => (
-          <li key={cast.cast_id}>
+          <CastCard key={cast.cast_id}>
             {cast.profile_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w200${cast.profile_path}`}
@@ -38,9 +39,9 @@ const Cast = () => {
               <p>{cast.name}</p>
               <p>{cast.character}</p>
             </div>
-          </li>
+          </CastCard>
         ))}
-      </ul>
+      </GastList>
     </>
   );
 };

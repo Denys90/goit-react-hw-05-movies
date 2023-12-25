@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
-
-// import NotFound from '../components/NotFound/NotFound';
+import { Global, css } from '@emotion/react';
+import Canvas from '../Images/Canvas.jpg';
 
 const Home = lazy(() => import('../Pages/Home'));
 const Movies = lazy(() => import('../Pages/Movies'));
@@ -14,7 +14,25 @@ const SharedLayout = lazy(() =>
 
 export const App = () => {
   return (
-    <div>
+    <>
+      <Global
+        styles={css`
+          *,
+          *::before,
+          *::after {
+            box-sizing: inherit;
+          }
+          body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+              Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #212121;
+            background-image: url(${Canvas});
+          }
+        `}
+      />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
@@ -25,6 +43,6 @@ export const App = () => {
           </Route>
         </Route>
       </Routes>
-    </div>
+    </>
   );
 };

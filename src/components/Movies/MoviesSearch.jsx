@@ -12,6 +12,9 @@ const MoviesSearch = () => {
 
     try {
       const response = await fetchKeyword(queryValue);
+      if (response.data.total_results === 0) {
+        return alert(`Sorry, we didn't find any results for ${queryValue}.`);
+      }
       setMovies(response.data.results);
     } catch (error) {
       throw error;
