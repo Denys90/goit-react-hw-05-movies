@@ -15,7 +15,7 @@ const SubmitForm = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(queryInput);
-    setSearchParams({});
+    setSearchParams({ query: queryInput });
   };
   // ===========================================================>
   const updateQueryString = e => {

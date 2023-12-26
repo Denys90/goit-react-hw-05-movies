@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import fetchKeyword from '../components/API/fetchKeyword';
 import RenderList from '../components/RenderList/RenderList';
 import SubmitForm from '../components/SubmitForm/SubmitForm';
@@ -6,6 +7,7 @@ import SubmitForm from '../components/SubmitForm/SubmitForm';
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [queryValue, setQueryValue] = useState('');
+  const [searchParams] = useSearchParams();
   // ============================================>
   const fetchmoviesKeyWord = useCallback(async () => {
     if (!queryValue) return;
@@ -20,6 +22,11 @@ const Movies = () => {
       throw error;
     }
   }, [queryValue]);
+  // ============================================>
+  useEffect(() => {
+    const initialQuery = searchParams.get('query') || '';
+    setQueryValue(initialQuery);
+  }, [searchParams]);
   // ============================================>
   useEffect(() => {
     if (queryValue) {
