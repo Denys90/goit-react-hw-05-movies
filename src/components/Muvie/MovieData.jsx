@@ -1,6 +1,5 @@
-import { useParams, useLocation, Outlet } from 'react-router-dom';
-import { Suspense, useEffect, useState, useRef } from 'react';
-import fetchNameMovie from '../API/fetchNameMovie';
+import { useLocation, Outlet } from 'react-router-dom';
+import { Suspense, useRef } from 'react';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import { FaChevronLeft } from 'react-icons/fa';
 import {
@@ -15,23 +14,9 @@ import {
   GoToBack,
 } from './Container';
 
-const MovieData = () => {
-  const [oneMovie, setOneMovie] = useState([]);
-  const { movieId } = useParams();
+const MovieData = ({ oneMovie }) => {
   const location = useLocation();
   const backlinkLocationRef = useRef(location.state?.from ?? '/movies');
-
-  useEffect(() => {
-    const fetchOneMovie = async () => {
-      try {
-        const response = await fetchNameMovie(movieId);
-        setOneMovie(response.data);
-      } catch (error) {
-        throw error;
-      }
-    };
-    fetchOneMovie();
-  }, [movieId]);
 
   const { poster_path, title, overview, popularity, release_date } = oneMovie;
   const DEFAULT_POSTER_PATH = 'https://via.placeholder.com/92';

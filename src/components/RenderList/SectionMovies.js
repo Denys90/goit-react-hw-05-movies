@@ -5,9 +5,7 @@ export const SectionMovies = styled.section`
   display: inline-flexbox;
   justify-content: center;
   text-align: center;
-  h1 {
-    color: #cfcaca;
-  }
+
   ul {
     margin-left: 560px;
     width: 800px;

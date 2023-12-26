@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-async function fetchNameMovie(id) {
+async function fetchNameMovie(query) {
   const options = {
     method: 'GET',
-    url: `https://api.themoviedb.org/3/movie/${id}`,
+    url: `https://api.themoviedb.org/3/movie/${query}`,
     params: { language: 'en-US' },
     headers: {
       accept: 'application/json',

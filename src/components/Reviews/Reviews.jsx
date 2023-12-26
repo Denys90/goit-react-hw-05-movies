@@ -11,7 +11,6 @@ const Reviews = () => {
     const fetchAuthor = async () => {
       try {
         const { data } = await fetchReviews(movieId);
-
         setAuthors(data.results);
       } catch (error) {
         throw error;
@@ -23,12 +22,16 @@ const Reviews = () => {
 
   return (
     <ul>
-      {authors.map(author => (
-        <li key={author.id}>
-          <h2>{author.author_details.username}</h2>
-          <StyledContent>{author.content}</StyledContent>
-        </li>
-      ))}
+      {authors.length === 0 ? (
+        <StyledContent>We don`t have any reviews for this movie!</StyledContent>
+      ) : (
+        authors.map(author => (
+          <li key={author.id}>
+            <h2>{author.author_details.username}</h2>
+            <StyledContent>{author.content}</StyledContent>
+          </li>
+        ))
+      )}
     </ul>
   );
 };
