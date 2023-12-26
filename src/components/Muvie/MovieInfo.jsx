@@ -14,7 +14,7 @@ import {
   GoToBack,
 } from './Container';
 
-const MovieData = ({ oneMovie }) => {
+const MovieInfo = ({ oneMovie }) => {
   const location = useLocation();
   const backlinkLocationRef = useRef(location.state?.from ?? '/movies');
 
@@ -85,4 +85,4 @@ const MovieData = ({ oneMovie }) => {
     </Container>
   );
 };
-export default MovieData;
+export default MovieInfo;

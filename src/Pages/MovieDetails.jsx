@@ -1,7 +1,7 @@
-import MovieData from '../components/Muvie/MovieData';
 import fetchNameMovie from '../components/API/fetchNameMovie';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import MovieInfo from '../components/Muvie/MovieInfo';
 
 const MovieDetails = () => {
   const [oneMovie, setOneMovie] = useState([]);
@@ -18,6 +18,6 @@ const MovieDetails = () => {
     };
     fetchOneMovie();
   }, [movieId]);
-  return <MovieData oneMovie={oneMovie} />;
+  return <MovieInfo oneMovie={oneMovie} />;
 };
 export default MovieDetails;
