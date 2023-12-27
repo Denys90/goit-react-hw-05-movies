@@ -15,7 +15,13 @@ export const Header = styled.header`
     padding-right: 610px;
     font-size: 32px;
     font-weight: bold;
-    color: #8a0709;
+    color: rgb(47, 141, 231);
+  }
+  p {
+    margin: 0;
+    padding: 0;
+    margin-left: 140px;
+    color: rgb(231, 203, 47);
   }
 
   nav {
@@ -44,11 +50,15 @@ export const LinkStyled = styled(NavLink)`
   color: #cfcaca;
 
   &.active {
-    background-color: #9e000389;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.6) 28%,
+      rgba(237, 15, 15, 0.6) 100%
+    );
   }
   :hover {
     transition: 0.3s;
-    box-shadow: rgb(217, 79, 52) 20px 10px 0px,
-      rgb(100, 165, 183) -15px -6px 0px;
+    box-shadow: rgb(231, 203, 47) 20px 10px 0px,
+      rgb(47, 141, 231) -15px -6px 0px;
   }
 `;

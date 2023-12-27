@@ -8,10 +8,14 @@ const SharedLayout = () => {
     <>
       <>
         <Header>
-          <span>
-            <FcFilmReel />
-            GoSearch
-          </span>
+          <ul>
+            <span>
+              <FcFilmReel />
+              GoSearch
+            </span>
+            <p>We support Ukraine!</p>
+          </ul>
+
           <nav>
             <ul>
               <li>
